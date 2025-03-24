@@ -14,12 +14,7 @@ JM337391
 '''
 
 # 单独下载章节
-jm_photos = str_to_list('''
-JM322838
-JM431206
-JM271586
-JM337391
-)
+jm_photos = '''
 
 
 
