@@ -9,8 +9,6 @@ JM271586
 JM337391
 '''）
 
-#调用jmcomic的download_album方法，下载漫画
-download_album(jm_albums,option=get_option)
 
 
 def env(name, default, trim=('[]', '""', "''")):
