@@ -8,6 +8,29 @@ on:
         description: 本子id（多个id用-隔开，如 '123-456-789'）
         required: false
 
+      JM_PHOTO_IDS:
+        type: string
+        description: 章节id（单独下载章节，多个id同上）
+        required: false
+
+      CLIENT_IMPL:
+        type: string
+        description: 客户端类型（client.impl），下载失败时，你可以尝试填入此项重试。'api' 表示移动端，'html' 表示网页端。
+        default: ''
+        required: false
+
+      IMAGE_SUFFIX:
+        type: string
+        description: 图片后缀（download.cache.suffix），默认为空，表示不做图片格式转换。可填入例如 'png' 'jpg'
+        default: ''
+        required: false
+
+      DIR_RULE:
+        type: string
+        description: 下载文件夹规则（dir_rule.rule）。默认使用配置文件的 'Bd_Aauthor_Atitle_Pindex'。
+        default: ''
+        required: false
+
       ZIP_NAME:
         type: string
         default: 本子.tar.gz
@@ -16,7 +39,7 @@ on:
 
       UPLOAD_NAME:
         type: string
-        default: Click me to download
+        default: 下载完成的本子
         description: 上传文件名称
         required: false
 
@@ -61,9 +84,9 @@ jobs:
       JM_DOWNLOAD_DIR: /home/runner/work/jmcomic/download/
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v3
       - name: Set up Python 3.11
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v4
         with:
           python-version: "3.11"
 
@@ -94,7 +117,7 @@ jobs:
           mv "../$ZIP_NAME" .
 
       - name: 上传结果
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           name: ${{ env.UPLOAD_NAME }}
           path: ${{ env.JM_DOWNLOAD_DIR }}/${{ env.ZIP_NAME }}
