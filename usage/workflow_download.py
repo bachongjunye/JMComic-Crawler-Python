@@ -8,7 +8,6 @@ jm_albums = '''
 
 '''
 
-
 # 单独下载章节
 jm_photos = '''
 
